@@ -10,6 +10,3 @@ def pm1_filter(item):
         return True
     else:
         return False
-
-
-    
