@@ -1,11 +1,8 @@
-
-
 import argparse
 import csv
 import sys
 
 from gvit_categorizers import PM1 as pm1_flag
-
 
 if __name__ == "__main__":
     """
@@ -13,17 +10,17 @@ if __name__ == "__main__":
 
     # check for required python version:
     MIN_VERSION = (3, 6)
-    
+
     try:
         assert sys.version_info >= MIN_VERSION
     except AssertionError as e:
-        print("python < {mj}.{mn} detected.  Update your "
-              "environment to >= {mj}.{mn} to continue."
-              .format(mj=MIN_VERSION[0],
-                      mn=MIN_VERSION[1]),
-              file=sys.stderr)
+        print(
+            "python < {mj}.{mn} detected.  Update your "
+            "environment to >= {mj}.{mn} to continue.".format(
+                mj=MIN_VERSION[0], mn=MIN_VERSION[1]),
+            file=sys.stderr)
         exit(1)
-    
+
     description = "processes Oncotator file, requires python 3.6 or above"
 
     parser = argparse.ArgumentParser(usage=None, description=description)
@@ -33,13 +30,9 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    
-    print("using input file: {}".format(args.input_file),
-          file=sys.stderr)
-    print("using output file: {}".format(args.output_file),
-          file=sys.stderr)
+    print("using input file: {}".format(args.input_file), file=sys.stderr)
+    print("using output file: {}".format(args.output_file), file=sys.stderr)
 
-    
     with open(args.input_file, "r") as in_f:
         with open(args.output_file, "w") as out_f:
 
@@ -55,14 +48,10 @@ if __name__ == "__main__":
             # our writer (including the ):
             new_fieldnames = fieldnames + ["PM1"]
 
-            row_writer = csv.DictWriter(out_f,
-                                        fieldnames=new_fieldnames,
-                                        delimiter='\t')
+            row_writer = csv.DictWriter(
+                out_f, fieldnames=new_fieldnames, delimiter='\t')
             row_writer.writeheader()
-            
+
             for data_row in row_reader:
-                data_row.update({
-                    "PM1": pm1_flag(data_row)                    
-                })
+                data_row.update({"PM1": pm1_flag(data_row)})
                 row_writer.writerow(data_row)
-                
