@@ -11,12 +11,25 @@ if __name__ == "__main__":
     """
     """
 
-    description = "processes Oncotator file"
+    # check for required python version:
+    MIN_VERSION = (3, 6)
+    
+    try:
+        assert sys.version_info >= MIN_VERSION
+    except AssertionError as e:
+        print("python < {mj}.{mn} detected.  Update your "
+              "environment to >= {mj}.{mn} to continue."
+              .format(mj=MIN_VERSION[0],
+                      mn=MIN_VERSION[1]),
+              file=sys.stderr)
+        exit(1)
+    
+    description = "processes Oncotator file, requires python 3.6 or above"
 
     parser = argparse.ArgumentParser(usage=None, description=description)
 
-    parser.add_argument("-i", "--input_file", type=str)
-    parser.add_argument("-o", "--output_file", type=str)
+    parser.add_argument("-i", "--input_file", type=str, required=True)
+    parser.add_argument("-o", "--output_file", type=str, required=True)
 
     args = parser.parse_args()
 
