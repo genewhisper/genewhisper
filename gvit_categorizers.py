@@ -1,4 +1,3 @@
-
 def PM1(item):
     """
     Located in a mutational hot spot and/or critical and 
@@ -120,48 +119,52 @@ def PP1(item):
 
 def PP2(item):
     """
-    Missense variant in a gene that has a low rate of benign missense variation 
-    and in which missense variants are a common mechanism of disease
+    Missense variant in a gene that has a low rate of benign missense 
+    variation and in which missense variants are a 
+    common mechanism of disease
     """
     pass
 
 
 def PP3(item):
     """
-    Multiple lines of computational evidence support a deleterious effect on 
-    the gene or gene product (conservation, evolutionary, splicing impact, etc.)
+    Multiple lines of computational evidence support a deleterious 
+    effect on the gene or gene product (conservation, 
+    evolutionary, splicing impact, etc.)
     """
     pass
 
 
 def PP4(item):
     """
-    Patient’s phenotype or family history is highly specific for a disease with 
-    a single genetic etiology
+    Patient’s phenotype or family history is highly specific for 
+    a disease a single genetic etiology
     """
     pass
 
 
 def PP5(item):
     """
-    Reputable source recently reports variant as pathogenic, but the evidence 
-    is not available to the laboratory to perform an independent evaluation
+    Reputable source recently reports variant as pathogenic, but
+    the evidence is not available to the laboratory to 
+    perform an independent evaluation
     """
     pass
 
 
 def BP1(item):
     """
-    Missense variant in a gene for which primarily truncating variants are known 
-    to cause disease
+    Missense variant in a gene for which primarily truncating 
+    variants are known to cause disease
     """
     pass
 
 
 def BP2(item):
     """
-    Observed in trans with a pathogenic variant for a fully penetrant dominant 
-    gene/disorder or observed in cis with a pathogenic variant in any inheritance pattern
+    Observed in trans with a pathogenic variant for a fully 
+    penetrant dominant gene/disorder or observed in cis 
+    with a pathogenic variant in any inheritance pattern
     """
     pass
 
@@ -201,7 +204,8 @@ def BP6(item):
 def BP7(item):
     """
     A synonymous (silent) variant for which splicing prediction algorithms 
-    predict no impact to the splice consensus sequence nor the creation of a new splice site AND the nucleotide is not highly conserved
+    predict no impact to the splice consensus sequence nor the 
+    creation of a new splice site AND the nucleotide is not highly conserved
     """
     pass
 
@@ -217,15 +221,16 @@ def BS1(item):
 def BS2(item):
     """
     Observed in a healthy adult individual for a recessive (homozygous), 
-    dominant (heterozygous), or X-linked (hemizygous) disorder, with full penetrance expected at an early age
+    dominant (heterozygous), or X-linked (hemizygous) disorder, with 
+    full penetrance expected at an early age
     """
     pass
 
 
 def BS3(item):
     """
-    Well-established in vitro or in vivo functional studies show no damaging 
-    effect on protein function or splicing
+    Well-established in vitro or in vivo functional studies show no 
+    damaging effect on protein function or splicing
     """
     pass
 
@@ -240,8 +245,8 @@ def BS4(item):
 
 def BA1(item):
     """
-    Allele frequency is >5% in Exome Sequencing Project, 1000 Genomes Project, 
-    or Exome Aggregation Consortium
+    Allele frequency is >5% in Exome Sequencing Project, 1000 Genomes 
+    Project, or Exome Aggregation Consortium
     """
     pass
 
