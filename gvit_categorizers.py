@@ -24,13 +24,28 @@ def PVS1(item):
     """
     null variant (nonsense, frameshift, canonical ±1 or 2 splice sites,
     initiation codon, single or multiexon deletion) in a gene
-    where LOF is a known mechanism of disease
+    where LOF is a known mechanism of disease.
+
+    PVS1 null variant (nonsense, frameshift, 
+    canonical ±1 or 2 splice sites, initiation codon, 
+    single or multiexon deletion) in a gene where LOF 
+    is a known mechanism of disease.
+    Caveats:
+      - Beware of genes where LOF is not a known 
+        disease mechanism (e.g., GFAP, MYH7)
+      - Use caution interpreting LOF variants 
+        at the extreme 3′ end of a gene
+      - Use caution with splice variants that are
+        predicted to lead to exon skipping but
+        leave the remainder of the  protein intact
+      - Use caution in the presence of multiple
+        transcripts
     """
-    if (item["Variant_Classification"]=="Nonsense_Mutation" or
-    item["Variant_Classification"]== "Frame_Shift_Ins"):
-    return True
-else:
-    return False
+    if (item["Variant_Classification"] == "Nonsense_Mutation" or
+        item["Variant_Classification"] == "Frame_Shift_Ins"):
+        return True
+    else:
+        return False
 
 
 def PS1(item):
