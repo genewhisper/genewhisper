@@ -48,8 +48,7 @@ if __name__ == "__main__":
 
             # and define new fieldnames to be used by
             # our writer (including the ):
-            new_fieldnames = fieldnames + ["PM1"]
-            new_fieldnames = fieldnames + ["PVS1"]
+            new_fieldnames = fieldnames + ["PM1", "PVS1"]
 
             row_writer = csv.DictWriter(
                 out_f, fieldnames=new_fieldnames, delimiter='\t')
