@@ -4,7 +4,8 @@ import sys
 
 from gvit_categorizers import PM1 as pm1_flag
 from gvit_categorizers import PVS1 as pvs1_flag
-
+from gvit_categorizers import PM2 as pm2_flag
+from gvit_categorizers import PP3 as pp3_flag
 
 if __name__ == "__main__":
     """
@@ -48,7 +49,7 @@ if __name__ == "__main__":
 
             # and define new fieldnames to be used by
             # our writer (including the ):
-            new_fieldnames = fieldnames + ["PM1", "PVS1"]
+            new_fieldnames = fieldnames + ["PM1", "PVS1", "PM2", "PP3"]
 
             row_writer = csv.DictWriter(
                 out_f, fieldnames=new_fieldnames, delimiter='\t')
@@ -57,4 +58,6 @@ if __name__ == "__main__":
             for data_row in row_reader:
                 data_row.update({"PM1": pm1_flag(data_row)})
                 data_row.update({"PVS1": pvs1_flag(data_row)})
+                data_row.update({"PM2": pm2_flag(data_row)})
+                data_row.update({"PP3": pp3_flag(data_row)})
                 row_writer.writerow(data_row)

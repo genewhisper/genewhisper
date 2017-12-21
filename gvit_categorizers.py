@@ -16,9 +16,19 @@ def PM2(item):
     Absent from controls (or at extremely low frequency if recessive) in
     Exome Sequencing Project, 1000 Genomes Project, or
     Exome Aggregation Consortium
-    """
-    pass
 
+    Apply PM2 if one of the following is disease causing
+    ExAC_AF: anything <0.005 to absent is disease-causing
+    1000gp3_AF: anything <0.005 to absent is disease-causing
+    """
+    try:
+        if (item[float("ExAC_AF")]>=0.005 and item[float("1000gp3_AF")]>=0.005):
+            return True
+        else:
+            return False
+
+    except (ValueError, TypeError):
+        return "ValueError"
 
 def PVS1(item):
     """
@@ -53,7 +63,7 @@ def PVS1(item):
         item["Variant_Classification"] == "Missense_Mutation"):
         return False
     else:
-        return "TBD"    
+        return "TBD"
 
 
 def PS1(item):
@@ -158,9 +168,45 @@ def PP3(item):
     Multiple lines of computational evidence support a deleterious
     effect on the gene or gene product (conservation,
     evolutionary, splicing impact, etc.)
-    """
-    pass
 
+    Please use the following columns to assign PM3
+    if 2 or more of the following 3 predictors are disease causing:
+
+    dbNSFP_MutationTaster_pred; "A" and "D" both count as disease causing.
+    dbNSFP_Polyphen2_HVAR_pred; "D" and "P" both count as disease causing.
+    dbNSFP_SIFT_pred; "D" count as disease causing.
+
+    if assign PM3 if 2 or more of the following 3 predictors are disease causing
+    dbNSFP_phastCons46way_placental; >80% of the max value would be consider as disease causing.
+    dbNSFP_phyloP46way_placental; >80% of the max value be consider as disease causing.
+    dbNSFP_phyloP100way_vertebrate; >80% of the max value be consider as disease causing
+    """
+    counter_1 = []
+    counter_2 = []
+
+    if (item["dbNSFP_MutationTaster_pred"] == "A" or
+        item["dbNSFP_MutationTaster_pred"] == "D"):
+        counter_1.append(True)
+    else:
+        counter_1.append(False)
+
+    if (item["dbNSFP_Polyphen2_HVAR_pred"] == "D" or
+        item["dbNSFP_Polyphen2_HVAR_pred"] == "P" ):
+        counter_1.append(True)
+    else:
+        counter_1.append(False)
+
+    if (item["dbNSFP_SIFT_pred"] == "D"):
+        counter_1.append(True)
+    else:
+        counter_1.append(False)
+
+        print(counter_1)
+
+    if (sum(counter_1)>=2):
+        return True
+    else:
+        return False
 
 def PP4(item):
     """
