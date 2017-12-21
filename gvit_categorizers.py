@@ -18,17 +18,19 @@ def PM2(item):
     Exome Aggregation Consortium
 
     Apply PM2 if one of the following is disease causing
-    ExAC_AF: anything <0.005 to absent is disease-causing
-    1000gp3_AF: anything <0.005 to absent is disease-causing
+    ExAC_AF: anything < 0.005 to absent is disease-causing
+    1000gp3_AF: anything < 0.005 to absent is disease-causing
     """
     try:
-        if (item[float("ExAC_AF")]>=0.005 and item[float("1000gp3_AF")]>=0.005):
+        if (float(item["ExAC_AF"]) >= 0.005 and
+                float(item["1000gp3_AF"]) >= 0.005):
             return True
         else:
             return False
 
     except (ValueError, TypeError):
-        return "ValueError"
+        raise
+
 
 def PVS1(item):
     """
@@ -51,16 +53,14 @@ def PVS1(item):
       - Use caution in the presence of multiple
         transcripts
     """
-    if (item["Variant_Classification"] == "Nonsense_Mutation" or
-        item["Variant_Classification"] == "Frame_Shift_Ins" or
-        item["Variant_Classification"] == "Frame_Shift_Del"):
+    if (item["Variant_Classification"] in [
+            "Nonsense_Mutation"
+            "Frame_Shift_Ins", "Frame_Shift_Del"
+    ]):
         return True
-    elif (item["Variant_Classification"] == "Intron" or
-        item["Variant_Classification"] == "5'UTR" or
-        item["Variant_Classification"] == "3'UTR" or
-        item["Variant_Classification"] == "IGR" or
-        item["Variant_Classification"] == "5'Flank" or
-        item["Variant_Classification"] == "Missense_Mutation"):
+    elif (item["Variant_Classification"] in [
+            "Intron", "5'UTR", "3'UTR", "IGR", "5'Flank", "Missense_Mutation"
+    ]):
         return False
     else:
         return "TBD"
@@ -176,22 +176,24 @@ def PP3(item):
     dbNSFP_Polyphen2_HVAR_pred; "D" and "P" both count as disease causing.
     dbNSFP_SIFT_pred; "D" count as disease causing.
 
-    if assign PM3 if 2 or more of the following 3 predictors are disease causing
-    dbNSFP_phastCons46way_placental; >80% of the max value would be consider as disease causing.
-    dbNSFP_phyloP46way_placental; >80% of the max value be consider as disease causing.
-    dbNSFP_phyloP100way_vertebrate; >80% of the max value be consider as disease causing
+    Assign PM3 if 2 or more of the following 
+    3 predictors are disease causing:
+        - dbNSFP_phastCons46way_placental; >80% of the max 
+                value would be consider as disease causing.
+        - dbNSFP_phyloP46way_placental; >80% of the max 
+                value be consider as disease causing.
+        - dbNSFP_phyloP100way_vertebrate; >80% of the max
+                value be consider as disease causing
     """
     counter_1 = []
     counter_2 = []
 
-    if (item["dbNSFP_MutationTaster_pred"] == "A" or
-        item["dbNSFP_MutationTaster_pred"] == "D"):
+    if item["dbNSFP_MutationTaster_pred"] in ["A", "D"]:
         counter_1.append(True)
     else:
         counter_1.append(False)
 
-    if (item["dbNSFP_Polyphen2_HVAR_pred"] == "D" or
-        item["dbNSFP_Polyphen2_HVAR_pred"] == "P" ):
+    if item["dbNSFP_Polyphen2_HVAR_pred"] in ["D", "P"]:
         counter_1.append(True)
     else:
         counter_1.append(False)
@@ -203,10 +205,11 @@ def PP3(item):
 
         print(counter_1)
 
-    if (sum(counter_1)>=2):
+    if (sum(counter_1) >= 2):
         return True
     else:
         return False
+
 
 def PP4(item):
     """
