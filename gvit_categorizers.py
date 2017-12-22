@@ -22,14 +22,14 @@ def PM2(item):
     1000gp3_AF: anything < 0.005 to absent is disease-causing
     """
     try:
-        if (float(item["ExAC_AF"]) >= 0.005 and
-                float(item["1000gp3_AF"]) >= 0.005):
-            return True
-        else:
+        if (float(item["ExAC_AF"]) < 0.005 and
+                float(item["1000gp3_AF"]) < 0.005):
             return False
+        else:
+            return True
 
     except (ValueError, TypeError):
-        raise
+        return "TBD"
 
 
 def PVS1(item):
@@ -176,17 +176,25 @@ def PP3(item):
     dbNSFP_Polyphen2_HVAR_pred; "D" and "P" both count as disease causing.
     dbNSFP_SIFT_pred; "D" count as disease causing.
 
-    Assign PM3 if 2 or more of the following 
+    Assign PM3 if 2 or more of the following
     3 predictors are disease causing:
-        - dbNSFP_phastCons46way_placental; >80% of the max 
+        - dbNSFP_phastCons46way_placental; >80% of the max
                 value would be consider as disease causing.
-        - dbNSFP_phyloP46way_placental; >80% of the max 
+        - dbNSFP_phyloP46way_placental; >80% of the max
                 value be consider as disease causing.
         - dbNSFP_phyloP100way_vertebrate; >80% of the max
                 value be consider as disease causing
+
+    I think 1 is the max value for "dbNSFP_phastCons46way_placental"?
+    so 80% of that is 0.8;
+    Maybe 3 is the max value for "dbNSFP_phyloP46way_placental"?
+    Maybe 10 is the max value for "dbNSFP_phyloP100way_vertebrate"?
     """
     counter_1 = []
     counter_2 = []
+    max_value_dbNSFP_phastCons46way_placental = 1
+    max_value_dbNSFP_phyloP46way_placental = 3
+    max_value_dbNSFP_phyloP100way_vertebrate = 10
 
     if item["dbNSFP_MutationTaster_pred"] in ["A", "D"]:
         counter_1.append(True)
@@ -203,13 +211,29 @@ def PP3(item):
     else:
         counter_1.append(False)
 
-        print(counter_1)
+    try:
+        if(float(item["dbNSFP_phastCons46way_placental"]) > max_value_dbNSFP_phastCons46way_placental * 0.8):
+            counter_2.append(True)
+        else:
+            counter_2.append(False)
 
-    if (sum(counter_1) >= 2):
+        if(float(item["dbNSFP_phyloP46way_placental"]) > max_value_dbNSFP_phyloP46way_placental * 0.8):
+            counter_2.append(True)
+        else:
+            counter_2.append(False)
+
+        if(float(item["dbNSFP_phyloP100way_vertebrate"]) > max_value_dbNSFP_phyloP100way_vertebrate * 0.8):
+            counter_2.append(True)
+        else:
+            counter_2.append(False)
+
+    except (ValueError, TypeError):
+        return "TBD"
+
+    if (sum(counter_1) >= 2 or sum(counter_2) >= 2):
         return True
     else:
         return False
-
 
 def PP4(item):
     """
