@@ -24,12 +24,12 @@ def PM2(item):
     try:
         if (float(item["ExAC_AF"]) < 0.005 and
                 float(item["1000gp3_AF"]) < 0.005):
-            return False
-        else:
             return True
+        else:
+            return False
 
     except (ValueError, TypeError):
-        return "TBD"
+        return True
 
 
 def PVS1(item):
