@@ -71,7 +71,7 @@ def PS1(item):
     Same amino acid change as a previously established pathogenic
     variant regardless of nucleotide change
     """
-    pass
+    return "TBD"
 
 
 def PS2(item):
@@ -79,7 +79,7 @@ def PS2(item):
     De novo (both maternity and paternity confirmed) in a patient with the
     disease and no family history
     """
-    pass
+    return "TBD"
 
 
 def PS3(item):
@@ -87,7 +87,8 @@ def PS3(item):
     Well-established in vitro or in vivo functional studies supportive of
     a damaging effect on the gene or gene product
     """
-    pass
+    return "TBD"
+
 
 
 def PS4(item):
@@ -95,7 +96,7 @@ def PS4(item):
     The prevalence of the variant in affected individuals is
     significantly increased compared with the prevalence in controls
     """
-    pass
+    return "TBD"
 
 
 def PP1(item):
@@ -103,7 +104,7 @@ def PP1(item):
     (Strong evidence) Cosegregation with disease in multiple affected
     family members in a gene definitively known to cause the disease
     """
-    pass
+    return "TBD"
 
 
 def PM3(item):
@@ -111,7 +112,7 @@ def PM3(item):
     For recessive disorders, detected in trans with a
     pathogenic variant
     """
-    pass
+    return "TBD"
 
 
 def PM4(item):
@@ -119,7 +120,7 @@ def PM4(item):
     Protein length changes as a result of in-frame deletions/insertions in
     a nonrepeat region or stop-loss variants
     """
-    pass
+    return "TBD"
 
 
 def PM5(item):
@@ -127,7 +128,7 @@ def PM5(item):
     Novel missense change at an amino acid residue where a different
     missense change determined to be pathogenic has been seen before
     """
-    pass
+    return "TBD"
 
 
 def PM6(item):
@@ -135,7 +136,7 @@ def PM6(item):
     Assumed de novo, but without confirmation of paternity
     and maternity
     """
-    pass
+    return "TBD"
 
 
 def PP1(item):
@@ -143,7 +144,7 @@ def PP1(item):
     (Moderate evidence) Cosegregation with disease in multiple affected
     family members in a gene definitively known to cause the disease
     """
-    pass
+    return "TBD"
 
 
 def PP1(item):
@@ -151,7 +152,7 @@ def PP1(item):
     Cosegregation with disease in multiple affected family members in a
     gene definitively known to cause the disease
     """
-    pass
+    return "TBD"
 
 
 def PP2(item):
@@ -160,7 +161,7 @@ def PP2(item):
     variation and in which missense variants are a
     common mechanism of disease
     """
-    pass
+    return "TBD"
 
 
 def PP3(item):
@@ -169,7 +170,7 @@ def PP3(item):
     effect on the gene or gene product (conservation,
     evolutionary, splicing impact, etc.)
 
-    Please use the following columns to assign PM3
+    Please use the following columns to assign PP3
     if 2 or more of the following 3 predictors are disease causing:
 
     dbNSFP_MutationTaster_pred; "A" and "D" both count as disease causing.
@@ -240,7 +241,7 @@ def PP4(item):
     Patient’s phenotype or family history is highly specific for
     a disease a single genetic etiology
     """
-    pass
+    return "TBD"
 
 
 def PP5(item):
@@ -249,7 +250,7 @@ def PP5(item):
     the evidence is not available to the laboratory to
     perform an independent evaluation
     """
-    pass
+    return "TBD"
 
 
 def BP1(item):
@@ -257,7 +258,7 @@ def BP1(item):
     Missense variant in a gene for which primarily truncating
     variants are known to cause disease
     """
-    pass
+    return "TBD"
 
 
 def BP2(item):
@@ -266,7 +267,7 @@ def BP2(item):
     penetrant dominant gene/disorder or observed in cis
     with a pathogenic variant in any inheritance pattern
     """
-    pass
+    return "TBD"
 
 
 def BP3(item):
@@ -274,7 +275,7 @@ def BP3(item):
     In-frame deletions/insertions in a repetitive region without a
     known function
     """
-    pass
+    return "TBD"
 
 
 def BP4(item):
@@ -282,7 +283,7 @@ def BP4(item):
     Multiple lines of computational evidence suggest no impact on gene or
     gene product (conservation, evolutionary, splicing impact, etc.)
     """
-    pass
+    return "TBD"
 
 
 def BP5(item):
@@ -290,7 +291,7 @@ def BP5(item):
     Variant found in a case with an alternate molecular basis
     for disease
     """
-    pass
+    return "TBD"
 
 
 def BP6(item):
@@ -298,7 +299,7 @@ def BP6(item):
     Reputable source recently reports variant as benign, but the evidence is
     not available to the laboratory to perform an independent evaluation
     """
-    pass
+    return "TBD"
 
 
 def BP7(item):
@@ -307,7 +308,7 @@ def BP7(item):
     predict no impact to the splice consensus sequence nor the
     creation of a new splice site AND the nucleotide is not highly conserved
     """
-    pass
+    return "TBD"
 
 
 def BS1(item):
@@ -315,7 +316,7 @@ def BS1(item):
     Allele frequency is greater than expected
     for disorder
     """
-    pass
+    return "TBD"
 
 
 def BS2(item):
@@ -324,7 +325,7 @@ def BS2(item):
     dominant (heterozygous), or X-linked (hemizygous) disorder, with
     full penetrance expected at an early age
     """
-    pass
+    return "TBD"
 
 
 def BS3(item):
@@ -332,7 +333,7 @@ def BS3(item):
     Well-established in vitro or in vivo functional studies show no
     damaging effect on protein function or splicing
     """
-    pass
+    return "TBD"
 
 
 def BS4(item):
@@ -340,7 +341,7 @@ def BS4(item):
     Lack of segregation in affected members of
     a family
     """
-    pass
+    return "TBD"
 
 
 def BA1(item):
@@ -348,7 +349,7 @@ def BA1(item):
     Allele frequency is >5% in Exome Sequencing Project, 1000 Genomes
     Project, or Exome Aggregation Consortium
     """
-    pass
+    return "TBD"
 
 
 def Sequencing(item):
@@ -356,4 +357,4 @@ def Sequencing(item):
     artifact as determined by depth, quality, or other previously
     reviewed data
     """
-    pass
+    return "TBD"

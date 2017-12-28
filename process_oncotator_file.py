@@ -46,7 +46,13 @@ if __name__ == "__main__":
 
             # and define new fieldnames to be used by
             # our writer (including the ):
-            new_fieldnames = fieldnames + ["PM1", "PVS1", "PM2", "PP3"]
+            new_fieldnames = fieldnames + ["PM1", "PVS1", "PM2", "PP3",
+                                            "PM3", "PM4", "PM5", "PM6",
+                                            "PS1", "PS2", "PS3", "PS4",
+                                            "PP1", "PP2", "PP4", "PP5",
+                                            "BP1", "BP2", "BP3", "BP4", "BP5", "BP6", "BP7",
+                                            "BS1", "BS2", "BS3", "BS4",
+                                            "BA1", "Pathogenicity"]
 
             row_writer = csv.DictWriter(
                 out_f, fieldnames=new_fieldnames, delimiter='\t')
@@ -58,5 +64,37 @@ if __name__ == "__main__":
                     "PVS1": gvit.PVS1(data_row),
                     "PM2": gvit.PM2(data_row),
                     "PP3": gvit.PP3(data_row),
+
+                    "PM2": gvit.PM2(data_row),
+                    "PM3": gvit.PM3(data_row),
+                    "PM4": gvit.PM4(data_row),
+                    "PM5": gvit.PM5(data_row),
+                    "PM6": gvit.PM6(data_row),
+
+                    "PS1": gvit.PS1(data_row),
+                    "PS2": gvit.PS2(data_row),
+                    "PS3": gvit.PS3(data_row),
+                    "PS4": gvit.PS4(data_row),
+
+                    "PP1": gvit.PP1(data_row),
+                    "PP2": gvit.PP2(data_row),
+                    "PP3": gvit.PP3(data_row),
+                    "PP4": gvit.PP4(data_row),
+                    "PP5": gvit.PP5(data_row),
+
+                    "BP1": gvit.BP1(data_row),
+                    "BP2": gvit.BP2(data_row),
+                    "BP3": gvit.BP3(data_row),
+                    "BP4": gvit.BP4(data_row),
+                    "BP5": gvit.BP5(data_row),
+                    "BP6": gvit.BP6(data_row),
+                    "BP7": gvit.BP7(data_row),
+
+                    "BS1": gvit.BS1(data_row),
+                    "BS2": gvit.BS2(data_row),
+                    "BS3": gvit.BS3(data_row),
+                    "BS4": gvit.BS4(data_row),
+
+                    "BA1": gvit.BA1(data_row)
                 })
                 row_writer.writerow(data_row)
