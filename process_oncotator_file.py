@@ -3,6 +3,7 @@ import csv
 import sys
 
 import gvit_categorizers as gvit
+import gvit_pathogenicity as pathogenic
 
 if __name__ == "__main__":
     """
@@ -41,6 +42,9 @@ if __name__ == "__main__":
 
             row_reader = csv.DictReader(filtered_rows, delimiter='\t')
 
+            # put table to variable to readi it multiple times
+            table = list(row_reader)
+
             # get the fieldnames from our row reader:
             fieldnames = row_reader.fieldnames
 
@@ -52,13 +56,15 @@ if __name__ == "__main__":
                                             "PP1", "PP2", "PP4", "PP5",
                                             "BP1", "BP2", "BP3", "BP4", "BP5", "BP6", "BP7",
                                             "BS1", "BS2", "BS3", "BS4",
-                                            "BA1", "Pathogenicity"]
+                                            "BA1", "Pathogenicity",]
 
             row_writer = csv.DictWriter(
                 out_f, fieldnames=new_fieldnames, delimiter='\t')
             row_writer.writeheader()
+            # put table to variable to readi it multiple times
+            #table = list(row_reader)
 
-            for data_row in row_reader:
+            for data_row in table:
                 data_row.update({
                     "PM1": gvit.PM1(data_row),
                     "PVS1": gvit.PVS1(data_row),
@@ -96,5 +102,20 @@ if __name__ == "__main__":
                     "BS4": gvit.BS4(data_row),
 
                     "BA1": gvit.BA1(data_row)
+                })
+                row_writer.writerow(data_row)
+
+            # coming back to beggining of the file
+            out_f.seek(0)
+
+            # Write the header
+            row_writer = csv.DictWriter(
+                out_f, fieldnames=new_fieldnames, delimiter='\t')
+            row_writer.writeheader()
+
+
+            for data_row in table:
+                data_row.update({
+                    "Pathogenicity": pathogenic.pathogenicity(data_row)
                 })
                 row_writer.writerow(data_row)

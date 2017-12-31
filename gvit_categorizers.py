@@ -1,3 +1,36 @@
+def PVS1(item):
+    """
+    null variant (nonsense, frameshift, canonical ±1 or 2 splice sites,
+    initiation codon, single or multiexon deletion) in a gene
+    where LOF is a known mechanism of disease.
+
+    PVS1 null variant (nonsense, frameshift,
+    canonical ±1 or 2 splice sites, initiation codon,
+    single or multiexon deletion) in a gene where LOF
+    is a known mechanism of disease.
+    Caveats:
+      - Beware of genes where LOF is not a known
+        disease mechanism (e.g., GFAP, MYH7)
+      - Use caution interpreting LOF variants
+        at the extreme 3′ end of a gene
+      - Use caution with splice variants that are
+        predicted to lead to exon skipping but
+        leave the remainder of the  protein intact
+      - Use caution in the presence of multiple
+        transcripts
+    """
+    if (item["Variant_Classification"] in [
+            "Nonsense_Mutation"
+            "Frame_Shift_Ins", "Frame_Shift_Del"
+    ]):
+        return True
+    elif (item["Variant_Classification"] in [
+            "Intron", "5'UTR", "3'UTR", "IGR", "5'Flank", "Missense_Mutation"
+    ]):
+        return False
+    else:
+        return "TBD"
+
 def PM1(item):
     """
     Located in a mutational hot spot and/or critical and
@@ -32,38 +65,37 @@ def PM2(item):
         return True
 
 
-def PVS1(item):
+def PM3(item):
     """
-    null variant (nonsense, frameshift, canonical ±1 or 2 splice sites,
-    initiation codon, single or multiexon deletion) in a gene
-    where LOF is a known mechanism of disease.
+    For recessive disorders, detected in trans with a
+    pathogenic variant
+    """
+    return "TBD"
 
-    PVS1 null variant (nonsense, frameshift,
-    canonical ±1 or 2 splice sites, initiation codon,
-    single or multiexon deletion) in a gene where LOF
-    is a known mechanism of disease.
-    Caveats:
-      - Beware of genes where LOF is not a known
-        disease mechanism (e.g., GFAP, MYH7)
-      - Use caution interpreting LOF variants
-        at the extreme 3′ end of a gene
-      - Use caution with splice variants that are
-        predicted to lead to exon skipping but
-        leave the remainder of the  protein intact
-      - Use caution in the presence of multiple
-        transcripts
+
+def PM4(item):
     """
-    if (item["Variant_Classification"] in [
-            "Nonsense_Mutation"
-            "Frame_Shift_Ins", "Frame_Shift_Del"
-    ]):
-        return True
-    elif (item["Variant_Classification"] in [
-            "Intron", "5'UTR", "3'UTR", "IGR", "5'Flank", "Missense_Mutation"
-    ]):
-        return False
-    else:
-        return "TBD"
+    Protein length changes as a result of in-frame deletions/insertions in
+    a nonrepeat region or stop-loss variants
+    """
+    return "TBD"
+
+
+def PM5(item):
+    """
+    Novel missense change at an amino acid residue where a different
+    missense change determined to be pathogenic has been seen before
+    """
+    return "TBD"
+
+
+def PM6(item):
+    """
+    Assumed de novo, but without confirmation of paternity
+    and maternity
+    """
+    return "TBD"
+
 
 
 def PS1(item):
@@ -103,54 +135,6 @@ def PP1(item):
     """
     (Strong evidence) Cosegregation with disease in multiple affected
     family members in a gene definitively known to cause the disease
-    """
-    return "TBD"
-
-
-def PM3(item):
-    """
-    For recessive disorders, detected in trans with a
-    pathogenic variant
-    """
-    return "TBD"
-
-
-def PM4(item):
-    """
-    Protein length changes as a result of in-frame deletions/insertions in
-    a nonrepeat region or stop-loss variants
-    """
-    return "TBD"
-
-
-def PM5(item):
-    """
-    Novel missense change at an amino acid residue where a different
-    missense change determined to be pathogenic has been seen before
-    """
-    return "TBD"
-
-
-def PM6(item):
-    """
-    Assumed de novo, but without confirmation of paternity
-    and maternity
-    """
-    return "TBD"
-
-
-def PP1(item):
-    """
-    (Moderate evidence) Cosegregation with disease in multiple affected
-    family members in a gene definitively known to cause the disease
-    """
-    return "TBD"
-
-
-def PP1(item):
-    """
-    Cosegregation with disease in multiple affected family members in a
-    gene definitively known to cause the disease
     """
     return "TBD"
 
