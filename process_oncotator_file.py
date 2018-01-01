@@ -56,7 +56,7 @@ if __name__ == "__main__":
                                             "PP1", "PP2", "PP4", "PP5",
                                             "BP1", "BP2", "BP3", "BP4", "BP5", "BP6", "BP7",
                                             "BS1", "BS2", "BS3", "BS4",
-                                            "BA1", "Pathogenicity",]
+                                            "BA1", "Pathogenicity", "Pathogenicity_rule"]
 
             row_writer = csv.DictWriter(
                 out_f, fieldnames=new_fieldnames, delimiter='\t')
@@ -116,6 +116,8 @@ if __name__ == "__main__":
 
             for data_row in table:
                 data_row.update({
-                    "Pathogenicity": pathogenic.pathogenicity(data_row)
+                    "Pathogenicity": pathogenic.pathogenicity(data_row)[0],
+                    "Pathogenicity_rule": pathogenic.pathogenicity(data_row)[1]
+
                 })
                 row_writer.writerow(data_row)
