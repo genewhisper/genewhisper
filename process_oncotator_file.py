@@ -22,7 +22,9 @@ if __name__ == "__main__":
             file=sys.stderr)
         exit(1)
 
-    description = "processes Oncotator file, requires python 3.6 or above"
+    description = ("processes Oncotator file, "
+                   "requires python {mj}.{mn} or above".format(
+                       mj=MIN_VERSION[0], mn=MIN_VERSION[1]))
 
     parser = argparse.ArgumentParser(usage=None, description=description)
 
@@ -42,35 +44,33 @@ if __name__ == "__main__":
 
             row_reader = csv.DictReader(filtered_rows, delimiter='\t')
 
-            # put table to variable to readi it multiple times
-            table = list(row_reader)
-
             # get the fieldnames from our row reader:
             fieldnames = row_reader.fieldnames
 
-            # and define new fieldnames to be used by
-            # our writer (including the ):
-            new_fieldnames = fieldnames + ["PM1", "PVS1", "PM2", "PP3",
-                                            "PM3", "PM4", "PM5", "PM6",
-                                            "PS1", "PS2", "PS3", "PS4",
-                                            "PP1", "PP2", "PP4", "PP5",
-                                            "BP1", "BP2", "BP3", "BP4", "BP5", "BP6", "BP7",
-                                            "BS1", "BS2", "BS3", "BS4",
-                                            "BA1", "Pathogenicity", "Pathogenicity_rule"]
+            # and define new fieldnames:
+            # yapf: disable
+            new_fieldnames = fieldnames + [
+                "PVS1",
+                "PM1", "PM2", "PM3", "PM4", "PM5", "PM6",
+                "PS1", "PS2", "PS3", "PS4",
+                "PP1", "PP2","PP3", "PP4", "PP5",
+                "BP1", "BP2", "BP3", "BP4", "BP5", "BP6", "BP7",
+                "BS1", "BS2", "BS3", "BS4",
+                "BA1",
+                "Pathogenicity", "PathogenicityRule"
+            ]
+            # yapf: enable
 
             row_writer = csv.DictWriter(
                 out_f, fieldnames=new_fieldnames, delimiter='\t')
             row_writer.writeheader()
-            # put table to variable to readi it multiple times
-            #table = list(row_reader)
 
-            for data_row in table:
-                data_row.update({
-                    "PM1": gvit.PM1(data_row),
+            for data_row in row_reader:
+                # yapf: disable
+                criteria = {
                     "PVS1": gvit.PVS1(data_row),
-                    "PM2": gvit.PM2(data_row),
-                    "PP3": gvit.PP3(data_row),
 
+                    "PM1": gvit.PM1(data_row),
                     "PM2": gvit.PM2(data_row),
                     "PM3": gvit.PM3(data_row),
                     "PM4": gvit.PM4(data_row),
@@ -101,23 +101,15 @@ if __name__ == "__main__":
                     "BS3": gvit.BS3(data_row),
                     "BS4": gvit.BS4(data_row),
 
-                    "BA1": gvit.BA1(data_row)
-                })
-                row_writer.writerow(data_row)
+                    "BA1": gvit.BA1(data_row),
+                }
+                # yapf: enable
+                pathogenic_classification = pathogenic.pathogenicity(criteria)
 
-            # coming back to beggining of the file
-            out_f.seek(0)
-
-            # Write the header
-            row_writer = csv.DictWriter(
-                out_f, fieldnames=new_fieldnames, delimiter='\t')
-            row_writer.writeheader()
-
-
-            for data_row in table:
+                data_row.update(criteria)
                 data_row.update({
-                    "Pathogenicity": pathogenic.pathogenicity(data_row)[0],
-                    "Pathogenicity_rule": pathogenic.pathogenicity(data_row)[1]
-
+                    "Pathogenicity": pathogenic_classification[0],
+                    "PathogenicityRule": pathogenic_classification[1],
                 })
+
                 row_writer.writerow(data_row)

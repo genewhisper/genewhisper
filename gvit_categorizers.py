@@ -31,6 +31,7 @@ def PVS1(item):
     else:
         return "TBD"
 
+
 def PM1(item):
     """
     Located in a mutational hot spot and/or critical and
@@ -97,7 +98,6 @@ def PM6(item):
     return "TBD"
 
 
-
 def PS1(item):
     """
     Same amino acid change as a previously established pathogenic
@@ -120,7 +120,6 @@ def PS3(item):
     a damaging effect on the gene or gene product
     """
     return "TBD"
-
 
 
 def PS4(item):
@@ -197,17 +196,20 @@ def PP3(item):
         counter_1.append(False)
 
     try:
-        if(float(item["dbNSFP_phastCons46way_placental"]) > max_value_dbNSFP_phastCons46way_placental * 0.8):
+        if (float(item["dbNSFP_phastCons46way_placental"]) >
+                max_value_dbNSFP_phastCons46way_placental * 0.8):
             counter_2.append(True)
         else:
             counter_2.append(False)
 
-        if(float(item["dbNSFP_phyloP46way_placental"]) > max_value_dbNSFP_phyloP46way_placental * 0.8):
+        if (float(item["dbNSFP_phyloP46way_placental"]) >
+                max_value_dbNSFP_phyloP46way_placental * 0.8):
             counter_2.append(True)
         else:
             counter_2.append(False)
 
-        if(float(item["dbNSFP_phyloP100way_vertebrate"]) > max_value_dbNSFP_phyloP100way_vertebrate * 0.8):
+        if (float(item["dbNSFP_phyloP100way_vertebrate"]) >
+                max_value_dbNSFP_phyloP100way_vertebrate * 0.8):
             counter_2.append(True)
         else:
             counter_2.append(False)
@@ -219,6 +221,7 @@ def PP3(item):
         return True
     else:
         return False
+
 
 def PP4(item):
     """
