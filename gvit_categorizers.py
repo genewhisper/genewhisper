@@ -336,8 +336,15 @@ def BA1(item):
     Allele frequency is >5% in Exome Sequencing Project, 1000 Genomes
     Project, or Exome Aggregation Consortium
     """
-    return "TBD"
+    try:
+        if (float(item["ExAC_AF"]) >= 0.05 or
+                float(item["1000gp3_AF"]) >= 0.05):
+            return True
+        else:
+            return False
 
+    except (ValueError, TypeError):
+        return "Empty"
 
 def Sequencing(item):
     """
