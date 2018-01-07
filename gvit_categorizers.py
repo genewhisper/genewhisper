@@ -344,7 +344,7 @@ def BA1(item):
             return False
 
     except (ValueError, TypeError):
-        return "Empty"
+        return True
 
 def Sequencing(item):
     """
