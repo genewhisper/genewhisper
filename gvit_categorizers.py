@@ -1,3 +1,5 @@
+import random
+
 def PVS1(item):
     """
     null variant (nonsense, frameshift, canonical ±1 or 2 splice sites,
@@ -119,7 +121,9 @@ def PS3(item):
     Well-established in vitro or in vivo functional studies supportive of
     a damaging effect on the gene or gene product
     """
-    return "TBD"
+
+    list = [True, False, "TBD"]
+    return random.choice(list)
 
 
 def PS4(item):
@@ -319,8 +323,18 @@ def BS3(item):
     """
     Well-established in vitro or in vivo functional studies show no
     damaging effect on protein function or splicing
+
+    In order to assign BS3 or PS3 criterias it requires work that
+    we don't have the resources right now. However, it is still doable
+    by providing clickable link to "google scholar" and "pubmed" for
+    each given variant. We will need pre-search term automatic generated
+    using gene name, c. and p. term.
+    We just don't assign any criterias automatically for now and it requires
+    manually reading for the paper and allow user to input "True" or "False" or "TBD"
     """
-    return "TBD"
+
+    list = [True, False, "TBD"]
+    return random.choice(list)
 
 
 def BS4(item):
