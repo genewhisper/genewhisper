@@ -266,7 +266,10 @@ def BP3(item):
     In-frame deletions/insertions in a repetitive region without a
     known function
     """
-    return "TBD"
+
+    if (item["Variant_Classification"] in ["Frame_Shift_Ins", "Frame_Shift_Del"] and item["UniProt_Region"]==""):
+        return True
+    else: return "TBD"
 
 
 def BP4(item):
