@@ -57,7 +57,8 @@ if __name__ == "__main__":
                 "BP1", "BP2", "BP3", "BP4", "BP5", "BP6", "BP7",
                 "BS1", "BS2", "BS3", "BS4",
                 "BA1",
-                "Pathogenicity", "PathogenicityRule"
+                "Pathogenicity", "PathogenicityRule",
+                "Google_Scholar"
             ]
             # yapf: enable
 
@@ -79,7 +80,7 @@ if __name__ == "__main__":
 
                     "PS1": gvit.PS1(data_row),
                     "PS2": gvit.PS2(data_row),
-                    "PS3": gvit.PS3(data_row),
+                    "PS3": gvit.PS3(data_row)[0],
                     "PS4": gvit.PS4(data_row),
 
                     "PP1": gvit.PP1(data_row),
@@ -110,6 +111,7 @@ if __name__ == "__main__":
                 data_row.update({
                     "Pathogenicity": pathogenic_classification[0],
                     "PathogenicityRule": pathogenic_classification[1],
+                    "Google_Scholar": gvit.PS3(data_row)[1]
                 })
 
                 row_writer.writerow(data_row)

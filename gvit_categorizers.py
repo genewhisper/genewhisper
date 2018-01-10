@@ -121,9 +121,13 @@ def PS3(item):
     Well-established in vitro or in vivo functional studies supportive of
     a damaging effect on the gene or gene product
     """
-
+    #return random value and link for Google Scholar
     list = [True, False, "TBD"]
-    return random.choice(list)
+    return [
+        random.choice(list),
+        "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C21&q="+item["Hugo_Symbol"]+"+gene&btnG="
+        ]
+
 
 
 def PS4(item):
