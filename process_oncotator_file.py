@@ -6,8 +6,6 @@ import gvit_categorizers as gvit
 import gvit_pathogenicity as pathogenic
 
 if __name__ == "__main__":
-    """
-    """
 
     # check for required python version:
     MIN_VERSION = (3, 6)
@@ -57,7 +55,7 @@ if __name__ == "__main__":
                 "BP1", "BP2", "BP3", "BP4", "BP5", "BP6", "BP7",
                 "BS1", "BS2", "BS3", "BS4",
                 "BA1",
-                "Pathogenicity", "PathogenicityRule",
+                "Pathogenicity", "Pathogenicity_Rule",
                 "Google_Scholar"
             ]
             # yapf: enable

@@ -1,6 +1,3 @@
-#STRONG = ("PS1", "PS2", "PS3", "PS4")
-
-
 def pathogenicity(item):
     strong_criterias = [item["PS1"], item["PS2"], item["PS3"], item["PS4"]]
     moderate_criterias = [
