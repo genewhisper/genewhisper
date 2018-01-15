@@ -108,7 +108,7 @@ if __name__ == "__main__":
                 data_row.update(criteria)
                 data_row.update({
                     "Pathogenicity": pathogenic_classification[0],
-                    "PathogenicityRule": pathogenic_classification[1],
+                    "Pathogenicity_Rule": pathogenic_classification[1],
                     "Google_Scholar": gvit.PS3(data_row)[1]
                 })
 
