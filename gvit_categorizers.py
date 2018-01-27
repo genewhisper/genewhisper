@@ -1,5 +1,6 @@
 import random
 
+
 def PVS1(item):
     """
     null variant (nonsense, frameshift, canonical ±1 or 2 splice sites,
@@ -22,12 +23,12 @@ def PVS1(item):
         transcripts
     """
     if (item["Variant_Classification"] in [
-            "Nonsense_Mutation"
-            "Frame_Shift_Ins", "Frame_Shift_Del"
+        "Nonsense_Mutation"
+        "Frame_Shift_Ins", "Frame_Shift_Del"
     ]):
         return True
     elif (item["Variant_Classification"] in [
-            "Intron", "5'UTR", "3'UTR", "IGR", "5'Flank", "Missense_Mutation"
+        "Intron", "5'UTR", "3'UTR", "IGR", "5'Flank", "Missense_Mutation"
     ]):
         return False
     else:
@@ -121,13 +122,12 @@ def PS3(item):
     Well-established in vitro or in vivo functional studies supportive of
     a damaging effect on the gene or gene product
     """
-    #return random value and link for Google Scholar
+    # return random value and link for Google Scholar
     list = [True, False, "TBD"]
     return [
         random.choice(list),
-        "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C21&q="+item["Hugo_Symbol"]+"+gene&btnG="
-        ]
-
+        "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C21&q=" + item["Hugo_Symbol"] + "+gene&btnG="
+    ]
 
 
 def PS4(item):
@@ -271,9 +271,10 @@ def BP3(item):
     known function
     """
 
-    if (item["Variant_Classification"] in ["Frame_Shift_Ins", "Frame_Shift_Del"] and item["UniProt_Region"]==""):
+    if (item["Variant_Classification"] in ["Frame_Shift_Ins", "Frame_Shift_Del"] and item["UniProt_Region"] == ""):
         return True
-    else: return "TBD"
+    else:
+        return "TBD"
 
 
 def BP4(item):
@@ -366,6 +367,7 @@ def BA1(item):
 
     except (ValueError, TypeError):
         return "TBD"
+
 
 def Sequencing(item):
     """

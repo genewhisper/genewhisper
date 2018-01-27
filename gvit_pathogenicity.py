@@ -11,21 +11,21 @@ def pathogenicity(item):
 
     try:
 
-        #Pathogenic
-        #case I
-        #(a)
+        # Pathogenic
+        # case I
+        # (a)
         if ((item["PVS1"] == True) and ((strong_criterias).count(True) >= 1)):
             return [
                 "Pathogenic",
                 "1 Very strong (PVS1) AND (a) >=1 Strong (PS1–PS4)"
             ]
-        #(b)
+        # (b)
         elif ((item["PVS1"] == True) and
               ((moderate_criterias).count(True) >= 2)):
             return [
                 "Pathogenic", "1 Very strong (PVS1) AND >=2 Moderate (PM1–PM6)"
             ]
-        #(c)
+        # (c)
         elif ((item["PVS1"] == True) and
               ((moderate_criterias).count(True) == 1 and
                (supporting_criterias).count(True) == 1)):
@@ -34,7 +34,7 @@ def pathogenicity(item):
                 ("1 Very strong (PVS1) AND (1 Moderate (PM1–PM6) "
                  "AND 1 supporting (PP1–PP5))")
             ]
-        #(d)
+        # (d)
         elif ((item["PVS1"] == True) and
               ((supporting_criterias).count(True) >= 2)):
             return [
@@ -42,19 +42,19 @@ def pathogenicity(item):
                 "1 Very strong (PVS1) AND >=2 Supporting (PP1–PP5)"
             ]
 
-        #case II
+        # case II
         elif (strong_criterias.count(True) >= 2):
             return ["Pathogenic", ">=2 Strong (PS1–PS4)"]
 
-        #case III
-        #(a)
+        # case III
+        # (a)
         elif ((strong_criterias.count(True) == 1) and
               (moderate_criterias.count(True) >= 3)):
             return [
                 "Pathogenic", "1 Strong (PS1–PS4) AND >=3 Moderate (PM1–PM6)"
             ]
 
-        #(b)
+        # (b)
         elif ((strong_criterias.count(True) == 1) and
               (moderate_criterias.count(True) == 2) and
               (supporting_criterias.count(True) >= 2)):
@@ -64,7 +64,7 @@ def pathogenicity(item):
                  "AND >=2 Supporting (PP1–PP5)")
             ]
 
-        #(c)
+        # (c)
         elif ((strong_criterias.count(True) == 1) and
               (moderate_criterias.count(True) == 1) and
               (supporting_criterias.count(True) >= 4)):
@@ -75,16 +75,16 @@ def pathogenicity(item):
                  "AND >=4 supporting (PP1–PP5)")
             ]
 
-        #Likely Pathogenic
-        #case I
+        # Likely Pathogenic
+        # case I
         if ((item["PVS1"] == True) and
-            ((moderate_criterias).count(True) == 1)):
+                ((moderate_criterias).count(True) == 1)):
             return [
                 "Likely_pathogenic",
                 "1 Very strong (PVS1) AND 1 moderate (PM1–PM6)"
             ]
 
-        #case II
+        # case II
         elif ((strong_criterias.count(True) == 1) and
               (moderate_criterias.count(True) == (1 or 2))):
             return [
@@ -92,7 +92,7 @@ def pathogenicity(item):
                 "1 Strong (PS1–PS4) AND 1–2 moderate (PM1–PM6)"
             ]
 
-        #case III
+        # case III
         elif ((strong_criterias.count(True) == 1) and
               (supporting_criterias.count(True) >= 2)):
             return [
@@ -100,11 +100,11 @@ def pathogenicity(item):
                 "1 Strong (PS1–PS4) AND >=2 supporting (PP1–PP5) OR"
             ]
 
-        #case IV
+        # case IV
         elif (moderate_criterias.count(True) >= 3):
             return ["Likely_pathogenic", ">=3 Moderate (PM1–PM6)"]
 
-        #case V
+        # case V
         elif ((moderate_criterias.count(True) == 2) and
               (supporting_criterias.count(True) >= 2)):
             return [
@@ -112,7 +112,7 @@ def pathogenicity(item):
                 "2 Moderate (PM1–PM6) AND >=2 supporting (PP1–PP5)"
             ]
 
-        #case VI
+        # case VI
         elif ((moderate_criterias.count(True) == 1) and
               (supporting_criterias.count(True) >= 4)):
             return [
@@ -120,20 +120,20 @@ def pathogenicity(item):
                 "1 Moderate (PM1–PM6) AND >=4 supporting (PP1–PP5)"
             ]
 
-        #Benign
-        #case I
+        # Benign
+        # case I
         elif ((item["BA1"] == True) and (item["PVS1"] == (False or "TBD")) and
               (any(x == (False or "TBD") for x in moderate_criterias)) and
               (any(x == (False or "TBD") for x in strong_criterias)) and
               (any(x == (False or "TBD") for x in supporting_criterias))):
             return ["Benign", "1 Stand-alone (BA1)"]
 
-        #case II
+        # case II
         elif (strong_criterias.count(True) >= 2):
             return ["Benign", ">=2 Strong (BS1–BS4)"]
 
-        #Likely benign
-        #case I
+        # Likely benign
+        # case I
         elif ((strong_criterias.count(True) == 1) and
               (supporting_criterias.count(True) == 1)):
             return [
@@ -141,7 +141,7 @@ def pathogenicity(item):
                 "1 Strong (BS1–BS4) and 1 supporting (BP1–BP7)"
             ]
 
-        #case II
+        # case II
         elif (supporting_criterias.count(True) >= 2):
             return ["Likely_benign", ">= Supporting (BP1–BP7)"]
 

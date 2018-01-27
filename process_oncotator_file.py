@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     description = ("processes Oncotator file, "
                    "requires python {mj}.{mn} or above".format(
-                       mj=MIN_VERSION[0], mn=MIN_VERSION[1]))
+        mj=MIN_VERSION[0], mn=MIN_VERSION[1]))
 
     parser = argparse.ArgumentParser(usage=None, description=description)
 
@@ -36,7 +36,6 @@ if __name__ == "__main__":
 
     with open(args.input_file, "r") as in_f:
         with open(args.output_file, "w") as out_f:
-
             # filter "comment" rows from raw TSV file:
             filtered_rows = filter(lambda x: x[:1] != "#", in_f)
 
@@ -51,7 +50,7 @@ if __name__ == "__main__":
                 "PVS1",
                 "PM1", "PM2", "PM3", "PM4", "PM5", "PM6",
                 "PS1", "PS2", "PS3", "PS4",
-                "PP1", "PP2","PP3", "PP4", "PP5",
+                "PP1", "PP2", "PP3", "PP4", "PP5",
                 "BP1", "BP2", "BP3", "BP4", "BP5", "BP6", "BP7",
                 "BS1", "BS2", "BS3", "BS4",
                 "BA1",
